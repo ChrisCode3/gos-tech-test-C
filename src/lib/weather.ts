@@ -27,11 +27,26 @@ export async function fetchYorkWeather(): Promise<WeatherViewModel> {
 
   const url = new URL("https://api.open-meteo.com/v1/forecast");
   // York, UK coordinates  - The coordinates where wrong and not pointing to York, Leeds ) Fixed now 
-  url.searchParams.set("latitude", String(39.949242));
-  url.searchParams.set("longitude", String(-76.743683));
+  url.searchParams.set("latitude", String(53.959965));
+  url.searchParams.set("longitude", String(-1.087297));
   url.searchParams.set("timezone", timezone);
   url.searchParams.set("hourly", hourly);
   url.searchParams.set("daily", daily);
+
+
+async function main() {
+
+  const res = await fetch(url.toString(), { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error(
+      `Open-Meteo request failed: ${res.status} ${res.statusText}`
+    );
+  }
+  const data = (await res.json()) as WeatherApiResponse;
+
+  return data;
+
+}
 
 
 

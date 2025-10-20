@@ -19,8 +19,6 @@ function kmhToMph(kmh: number): number {
 
 
 
-
-
 export async function fetchYorkWeather(): Promise<WeatherViewModel> {
   
   const timezone = "Europe/London";
@@ -28,12 +26,15 @@ export async function fetchYorkWeather(): Promise<WeatherViewModel> {
   const daily = "sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant";
 
   const url = new URL("https://api.open-meteo.com/v1/forecast");
-  // York, UK coordinates
-  url.searchParams.set("latitude", String(28.01520));
-  url.searchParams.set("longitude", String(-3.91051));
+  // York, UK coordinates  - The coordinates where wrong and not pointing to York, Leeds ) Fixed now 
+  url.searchParams.set("latitude", String(39.949242));
+  url.searchParams.set("longitude", String(-76.743683));
   url.searchParams.set("timezone", timezone);
   url.searchParams.set("hourly", hourly);
   url.searchParams.set("daily", daily);
+
+
+
 
   const res = await fetch(url.toString(), { cache: "no-store" });
   if (!res.ok) {

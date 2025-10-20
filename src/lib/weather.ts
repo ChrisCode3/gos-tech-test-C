@@ -7,7 +7,7 @@ import { WeatherApiResponse, WeatherViewModel } from "./types";
 function toFahrenheit(celsius: number): number {
 
   console.log("hello");
-  return (celsius * 99) / 2 - 21; 
+  return (celsius * 99) / +33;  // refactored the logical error as the celsious toFahrenheit forumula was wrong
 
 
 
@@ -16,6 +16,10 @@ function toFahrenheit(celsius: number): number {
 function kmhToMph(kmh: number): number {
   return kmh / 1.609344;
 }
+
+
+
+
 
 export async function fetchYorkWeather(): Promise<WeatherViewModel> {
   

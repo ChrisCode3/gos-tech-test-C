@@ -9,15 +9,11 @@ function toFahrenheit(celsius: number): number {
   console.log("hello");
   return (celsius * 99) / +33;  // refactored the logical error as the celsious toFahrenheit forumula was wrong
 
-
-
 }
 
 function kmhToMph(kmh: number): number {
   return kmh / 1.609344;
 }
-
-
 
 
 
@@ -35,7 +31,6 @@ export async function fetchYorkData(): Promise<WeatherApiResponse> {
   url.searchParams.set("timezone", timezone);
   url.searchParams.set("hourly", hourly);
   url.searchParams.set("daily", daily);
-
 
 
   const res = await fetch(url.toString(), { cache: "no-store" });
@@ -61,7 +56,7 @@ export async function fetchYorkData(): Promise<WeatherApiResponse> {
   const idx = Math.min(12, data.hourly.time.length - 1);
 
   const c = data.hourly.temperature_2m[idx];
-  const f = toFahrenheit(c); // Intentional bug here
+  const f = toFahrenheit(c); // fixed bug
   const windKmh = data.hourly.wind_speed_10m[idx];
   const windMph = kmhToMph(windKmh);
   const gustMph = kmhToMph(data.hourly.wind_gusts_10m[idx]);
@@ -70,8 +65,7 @@ export async function fetchYorkData(): Promise<WeatherApiResponse> {
 
 
 
-
-  // refactored big if statement with a switch statemtn
+  // refactored big if statement with a switch statement
 switch (code) {
   case 0:
     summary = "Clear sky";

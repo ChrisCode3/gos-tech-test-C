@@ -51,7 +51,7 @@ export async function fetchYorkData(): Promise<WeatherApiResponse> {
 }
 
 
-// Seperated the 2 
+// Seperated the big fuction into 2 seperate ones 
 
   export async function fetchYorkWeather(): Promise<WeatherViewModel> {
   const data = await fetchYorkData();
